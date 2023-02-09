@@ -1,0 +1,71 @@
+x = {}
+print("Program Input Nilai")
+print("="*19)
+while True:
+    c = input("\n(L)ihat, (T)ambah, (U)bah, (H)apus, (C)ari, (K)eluar: ")
+    if c.lower() == 't':
+        print("\nTambah Data")
+        nim = input("NIM            : ")
+        nama = input("Nama           : ")
+        uts = int(input("Nilai UTS      : "))
+        uas = int(input("Nilai UAS      : "))
+        tugas = int(input("Nilai Tugas    : "))
+        akhir = tugas*30/100 + uts*35/100 + uas*35/100
+        x[nim] = nama, tugas, uts, uas, akhir
+    elif c.lower() == 'u':
+        print("\nUbah Data")
+        nim = input("Masukan NIM    : ")
+        if nim in x.keys():
+            del x[nim]
+            nim = input("NIM            : ")
+            nama = input("Nama           : ")
+            uts = int(input("Nilai UTS      : "))
+            uas = int(input("Nilai UAS      : "))
+            tugas = int(input("Nilai Tugas    : "))
+            akhir = tugas*30/100 + uts*35/100 + uas*35/100
+            x[nim] = nama, tugas, uts, uas, akhir
+        else:
+            print("NIM {0} tidak ditemukan".format(nim))
+    elif c.lower() == 'h':
+        print("\nHapus Data")
+        nim = input("Masukan NIM    : ")
+        if nim in x.keys():
+            del x[nim]
+        else:
+            print("NIM {0} Tidak Ditemukan".format(nim))
+    elif c.lower() == 'c':
+        print("\nCari Data")
+        nim = input("Masukan NIM    : ")
+        if nim in x.keys():
+            print("\nDaftar Nilai")
+            print("="*73)
+            print("|      NIM       |       NAMA       |  TUGAS  |  UTS  |  UAS  |  AKHIR  |")
+            print("="*73)
+            print("| {0:15s}| {1:15s}  | {2:5d}   | {3:5d} |{4:6d} | {5:7.2f} |"
+                  .format(nim, nama, tugas, uts, uas, akhir))
+            print("="*73)
+        else:
+            print("NIM {0} Tidak Ditemukan".format(nim))
+    elif c.lower() == 'l':
+        if x.items():
+            print("\nDaftar Nilai")
+            print("="*78)
+            print("|No. |      NIM       |       NAMA       |  TUGAS  |  UTS  |  UAS  |  AKHIR  |")
+            print("="*78)
+            i = 0
+            for z in x.items():
+                i += 1
+                print("| {no:2d} | {0:15s}| {1:15s}  | {2:5d}   | {3:5d} |{4:6d} | {5:7.2f} |"
+                      .format(z[0][:13], z[1][0], z[1][1], z[1][2], z[1][3], z[1][4], no=i))
+            print("=" * 78)
+        else:
+            print("\nDaftar Nilai")
+            print("="*78)
+            print("|No. |      NIM       |       NAMA       |  TUGAS  |  UTS  |  UAS  |  AKHIR  |")
+            print("="*78)
+            print("|                                TIDAK ADA DATA                              |")
+            print("="*78)
+    elif c. lower() == 'k':
+        break
+    else:
+        print("Pilih menu yang tersedia")
